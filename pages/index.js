@@ -4,15 +4,16 @@ import Home from "../components/home";
 
 export default function MainPage() {
   return (
-    <div>
+    <div className="">
       <Head>
         <title>Quiz Up</title>
         <meta name="description" content="Online Quiz App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Navbar />
-      <Home />
+      <div className="">
+        <Navbar />
+        <Home />
+      </div>
     </div>
   );
 }

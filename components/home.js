@@ -1,10 +1,9 @@
+import Link from "next/link";
 import Image from "next/image";
+
 import bannerImage from "../public/assets/images/banner-image.jpg";
-import { useState } from "react";
 
 export default function Home() {
-  const [name, setName] = useState("");
-
   return (
     <div className="py-28 ">
       <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 justify-between items-center">
@@ -16,21 +15,21 @@ export default function Home() {
             Develop your General Knowledge
           </h2>
           <p className="mt-8 max-w-2xl text-xl text-gray-400 md:mx-auto">
-            Enter your name to start a quiz
+            Please click the button to start a quiz
           </p>
-          <div className="py-3">
-            <input
-              onChange={(event) => {
-                setName(event.target.value || "");
-              }}
-              value={name}
-              className="w-68 h-12 shadow-green-500 px-4 rounded-sm border-2 ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-semibold"
-              type="text"
-              name="admin_name"
-              id="admin_name"
-              placeholder="Enter Your Name"
-            />
-          </div>
+
+          <Link
+            href={"/quiz/configure"}
+            type="text"
+            name="admin_name"
+            id="admin_name"
+            className=" mt-6"
+            passHref
+          >
+            <div className="w-64 h-12 px-4 py-2 mt-2 md:mx-auto text-center text-xl text-gray-700 bg-green-500 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer hover:bg-green-400 hover:text-gray-800 duration-200">
+              Take a Quiz
+            </div>
+          </Link>
         </div>
 
         <div className="w-1/2 max-w-[34rem] item-center justify-center mx-auto md:order-last">

@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import Navbar from "../components/navbar";
 import Home from "../components/home";
 

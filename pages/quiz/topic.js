@@ -1,29 +1,18 @@
+import Router from "next/router";
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import topicData from "../../constants/topic-data";
 import Navbar from "../../components/navbar";
-const data = [
-  {
-    id: 1,
-    name: "General Knowledge",
-  },
-  {
-    id: 2,
-    name: "General Science",
-  },
 
-  {
-    id: 3,
-    name: "Information Technology",
-  },
-
-  {
-    id: 4,
-    name: "Mathematics",
-  },
-];
 const FirstQuiz = () => {
   const [name, setName] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("")
+
+  useEffect(() => {
+    localStorage.setItem("user", name);
+    console.log("drama");
+  }, [name]);
 
   return (
     <div>
@@ -47,10 +36,11 @@ const FirstQuiz = () => {
             <h1>Select a Topic</h1>
           </div>
           <div>
-            {data.map((item) => {
+            {topicData.map((item) => {
               return (
                 <div
                   key={item.id}
+                  onClick={() => Router.push(`./${item.name}`)}
                   className="w-68 h-12 px-4 py-2 mt-2 text-center text-xl text-gray-700 bg-green-500 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer hover:bg-green-400 hover:text-gray-800 duration-200"
                 >
                   {item.name}

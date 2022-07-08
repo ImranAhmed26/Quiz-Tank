@@ -19,7 +19,7 @@ export default function Home() {
           </p>
 
           <Link
-            href={"/quiz/topic"}
+            href={"/Quiz/TopicSelection"}
             type="text"
             name="admin_name"
             id="admin_name"

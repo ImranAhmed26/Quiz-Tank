@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-import Navbar from "../components/navbar";
-import Home from "../components/home";
+import Navbar from "../components/Navbar";
+import Home from "../components/Home";
 
 export default function MainPage() {
   return (

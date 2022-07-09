@@ -36,17 +36,6 @@ const Quiz = () => {
     setNumber(number - 1);
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple")
-  //     .then((response) => {
-  //       const data = response.data;
-  //       console.log(response);
-  //       console.log(response.data.results);
-  //       setQuestions(data.results);
-  //     });
-  // }, []);
-
   useEffect(() => {
     axios
       .get("https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple")
@@ -69,35 +58,35 @@ const Quiz = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="text-center pt-20 flex flex-col justify-center items-center">
-        <h1 className="text-2xl font-medium text-gray-700">{`Hello ${userName}.`}</h1>{" "}
+      <div className="text-center pt-20 flex flex-col justify-center items-center font-serif">
+        <h1 className="text-3xl font-semibold text-gray-600">{`Hello ${userName}.`}</h1>
         <h1 className="text-xl text-gray-600">To answer, please select from the options below.</h1>
         {quiz[number] && (
-          <div className="">
-            <div className="bg-green-200 w-[50rem] text-2xl font-medium text-gray-700 px-6 py-3 mb-4 rounded-md ">
+          <div className="flex flex-col items-center ">
+            <div className="bg-gray-50 w-[24rem] md:w-[30rem] lg:w-[40rem] text-2xl font-medium text-gray-700 px-6 py-2 mt-16 mb-4 rounded-md drop-shadow-md">
               {quiz[number].question}
             </div>
 
             <div>
               {quiz[number].options.map((item, index) => (
                 <div key={index} onClick={pickAnswer}>
-                  <div className="drop-shadow flex justify-center text-xl text-left">
-                    <div className="grid grid-flow-col grid-rows-4 text-center text-gray-800 bg-green-200 rounded-md px-2 pt-1 mt-2 h-10 cursor-default w-[20rem] xl:w-[30rem] 2xl:w-[40rem] hover:bg-green-300 drop-shadow-sm duration-200">
+                  <div className=" drop-shadow flex justify-center text-xl">
+                    <div className="text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 cursor-default w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md">
                       {` ${index + 1}. ${item}`}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex py-4 mx-20 px-40 xl:px-20  justify-between items-center">
+            <div className="flex gap-16 md:gap-40 lg:gap-80 py-4 mt-6 lg:mx-20 px-52 md:px-40 lg:px-20 justify-between font-sans">
               <div
-                className="w-36 h-8 pt-1 bg-gray-200 rounded-md hover:bg-gray-300 cursor-pointer duration-200"
+                className="w-40 h-10 pt-1.5 cursor-pointer px-3 py-2 border border-gray-800 rounded-sm text-base font-medium text-gray-700 hover:bg-gray-700 hover:text-white transition-all duration-150 drop-shadow-md"
                 onClick={handleBack}
               >
                 Previous Question
               </div>
               <div
-                className="w-36 h-8 pt-1 bg-gray-200 rounded-md hover:bg-gray-300 cursor-pointer duration-200" 
+                className="w-40 h-10 pt-1.5 cursor-pointer px-3 py-2 border border-gray-800 rounded-sm text-base font-medium text-gray-700 hover:bg-gray-700 hover:text-white transition-all duration-150 drop-shadow-md"
                 onClick={handleSkip}
               >
                 Skip Question
@@ -113,3 +102,14 @@ const Quiz = () => {
 export default Quiz;
 
 // quiz[number].options
+
+// useEffect(() => {
+//   axios
+//     .get("https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple")
+//     .then((response) => {
+//       const data = response.data;
+//       console.log(response);
+//       console.log(response.data.results);
+//       setQuestions(data.results);
+//     });
+// }, []);

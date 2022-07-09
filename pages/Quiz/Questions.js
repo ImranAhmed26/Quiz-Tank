@@ -5,6 +5,13 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 
 const Quiz = () => {
+  const dummyData = [
+    "Computer Personal Unit",
+    " Central Process Unit",
+    "Central Processor Unit",
+    " Central Processing Unit",
+  ];
+
   const [questions, setQuestions] = useState();
   const [userName, setUserName] = useState();
   const [score, setScore] = useState(0);
@@ -21,21 +28,30 @@ const Quiz = () => {
     setNumber(number + 1);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple")
-      .then((response) => {
-        const data = response.data;
-        console.log(response);
-        console.log(response.data.results);
-        setQuestions(data.results);
-      });
-  }, []);
+  const handleSkip = () => {
+    setNumber(number + 1);
+  };
+
+  const handleBack = () => {
+    setNumber(number - 1);
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple")
+  //     .then((response) => {
+  //       const data = response.data;
+  //       console.log(response);
+  //       console.log(response.data.results);
+  //       setQuestions(data.results);
+  //     });
+  // }, []);
 
   useEffect(() => {
     axios
       .get("https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple")
       .then((res) => {
+        console.log(res);
         setQuiz(
           res.data.results.map((item) => ({
             question: item.question,
@@ -53,25 +69,41 @@ const Quiz = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="text-center pt-20">
-        <h1>{`Hello ${userName}. Please answer the questions below.`}</h1>
+      <div className="text-center pt-20 flex flex-col justify-center items-center">
+        <h1 className="text-2xl font-medium text-gray-700">{`Hello ${userName}.`}</h1>{" "}
+        <h1 className="text-xl text-gray-600">To answer, please select from the options below.</h1>
         {quiz[number] && (
-          <>
-            <div className="text-2xl font-medium text-gray-700 px-12 py-6">
+          <div className="">
+            <div className="bg-green-200 w-[50rem] text-2xl font-medium text-gray-700 px-6 py-3 mb-4 rounded-md ">
               {quiz[number].question}
             </div>
 
-            <divs>
+            <div>
               {quiz[number].options.map((item, index) => (
                 <div key={index} onClick={pickAnswer}>
-                  <div className="flex justify-center text-xl text-left">
-                    <div className="bg-green-400 rounded-sm px-2 mr-2 mt-4">{index + 1} </div>
-                    <div className="bg-green-400 rounded-sm px-2 w-96 mt-4">{item} </div>
+                  <div className="drop-shadow flex justify-center text-xl text-left">
+                    <div className="grid grid-flow-col grid-rows-4 text-center text-gray-800 bg-green-200 rounded-md px-2 pt-1 mt-2 h-10 cursor-default w-[20rem] xl:w-[30rem] 2xl:w-[40rem] hover:bg-green-300 drop-shadow-sm duration-200">
+                      {` ${index + 1}. ${item}`}
+                    </div>
                   </div>
                 </div>
               ))}
-            </divs>
-          </>
+            </div>
+            <div className="flex py-4 mx-20 px-40 xl:px-20  justify-between items-center">
+              <div
+                className="w-36 h-8 pt-1 bg-gray-200 rounded-md hover:bg-gray-300 cursor-pointer duration-200"
+                onClick={handleBack}
+              >
+                Previous Question
+              </div>
+              <div
+                className="w-36 h-8 pt-1 bg-gray-200 rounded-md hover:bg-gray-300 cursor-pointer duration-200" 
+                onClick={handleSkip}
+              >
+                Skip Question
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
@@ -79,3 +111,5 @@ const Quiz = () => {
 };
 
 export default Quiz;
+
+// quiz[number].options

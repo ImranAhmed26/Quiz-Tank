@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-12 ">
           <div className="flex justify-between items-center py-6 ">
             <div className="">
-              <Link href={"../"} passHref>
+              <Link href={"/"} passHref>
                 <a className="text-3xl font-extrabold pl-2 text-gray-700 drop-shadow-sm cursor-pointer">
                   Quiz Tank
                 </a>

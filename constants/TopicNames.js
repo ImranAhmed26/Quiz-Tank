@@ -1,11 +1,11 @@
  const topicData = [
   {
-    id: 1,
-    name: "General Knowledge",
+    id: 18,
+    name: "Computer Science",
   },
   {
-    id: 2,
-    name: "General Science",
+    id: 21,
+    name: "Sports",
   },
 
   {

@@ -2,7 +2,7 @@ import Router from "next/router";
 import React from "react";
 import { useEffect, useState } from "react";
 
-import Navbar from "../../components/navbar";
+import Navbar from "../components/navbar";
 
 const Result = () => {
   const [userName, setUserName] = useState();

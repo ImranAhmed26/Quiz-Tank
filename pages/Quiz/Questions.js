@@ -1,6 +1,7 @@
 const axios = require("axios").default;
 import React from "react";
 import { useEffect, useState } from "react";
+import Router from "next/router";
 
 import Navbar from "../../components/Navbar";
 
@@ -26,14 +27,22 @@ const Quiz = () => {
 
     if (quiz[number].answer === userAnswer) setPts(pts + 1);
     setNumber(number + 1);
+
+    if (number === 4) {
+      Router.push("./Result");
+    }
   };
 
   const handleSkip = () => {
-    setNumber(number + 1);
+    if (number < 4) {
+      setNumber(number + 1);
+    }
   };
 
   const handleBack = () => {
-    setNumber(number - 1);
+    if (number > 0) {
+      setNumber(number - 1);
+    }
   };
 
   useEffect(() => {
@@ -58,25 +67,28 @@ const Quiz = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="text-center pt-20 flex flex-col justify-center items-center font-serif">
+      <div className="text-center pt-20 flex flex-col justify-center items-center font-serif cursor-default ">
         <h1 className="text-3xl font-semibold text-gray-600">{`Hello ${userName}.`}</h1>
-        <h1 className="text-xl text-gray-600">To answer, please select from the options below.</h1>
+        <h1 className="text-xl text-gray-600">Please answer the multiple choise questions below</h1>
         {quiz[number] && (
           <div className="flex flex-col items-center ">
-            <div className="bg-gray-50 w-[24rem] md:w-[30rem] lg:w-[40rem] text-2xl font-medium text-gray-700 px-6 py-2 mt-16 mb-4 rounded-md drop-shadow-md">
+            <div className="flex items-center justify-center min-h-[8rem] bg-gray-50 w-[24rem] md:w-[30rem] lg:w-[40rem] text-2xl font-medium text-gray-700 px-6 py-2 mt-16 mb-4 rounded-md drop-shadow-md cursor-default ">
               {quiz[number].question}
             </div>
 
-            <div>
+            <div className=" min-h-[20rem] lg: min-h-[18rem]">
               {quiz[number].options.map((item, index) => (
                 <div key={index} onClick={pickAnswer}>
                   <div className=" drop-shadow flex justify-center text-xl">
-                    <div className="text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 cursor-default w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md">
+                    <div className="text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer">
                       {` ${index + 1}. ${item}`}
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="text-xl text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer">
+              Submit
             </div>
             <div className="flex gap-16 md:gap-40 lg:gap-80 py-4 mt-6 lg:mx-20 px-52 md:px-40 lg:px-20 justify-between font-sans">
               <div

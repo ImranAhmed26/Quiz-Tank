@@ -1,7 +1,9 @@
 import Router from "next/router";
 import React from "react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
+import topicImage from "../public/assets/images/topic-banner.jpg";
 import topicData from "../constants/topic-names";
 import Navbar from "../components/navbar";
 
@@ -29,54 +31,64 @@ const FirstQuiz = () => {
   return (
     <div>
       <Navbar />
-      <div className="pt-10 flex justify-center">
-        <form className="">
-          <div>
-            <input
-              onChange={(event) => {
-                setName(event.target.value || "");
-              }}
-              value={name || ""}
-              className="w-72 h-12 mt-28 px-4 rounded-sm border drop-shadow-sm ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-semibold"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter Your Name"
-            />
+      <div className="flex justify-center gap-10">
+        <div className="flex flex-col md:flex-row justify-center items-center max-w-5xl pt-10 md:pt-28  px-10">
+          <div className="w-1/2 ">
+            <div className="">
+              <Image className="" src={topicImage} alt="topic image" />
+            </div>
           </div>
-          <div className="w-68 h-12 px-4 py-2 mt-10 ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-bold border rounded-sm cursor-default">
-            <h1>Select a Topic</h1>
-          </div>
-          <div>
-            {topicData.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => {
-                    setSelectedTopic(item.id);
+
+          <div className="flex justify-center w-1/2">
+            <form className="">
+              <div>
+                <input
+                  onChange={(event) => {
+                    setName(event.target.value || "");
                   }}
-                  className={`w-72 h-12 px-4 py-2 mt-2 text-center text-xl text-gray-700 bg-green-300 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer hover:text-gray-800 duration-200 ${
-                    selectedTopic === item.id && "bg-green-400"
-                  }`}
-                >
-                  {item.name}
-                </div>
-              );
-            })}
+                  value={name || ""}
+                  className="w-72 h-12 px-4 rounded-sm border drop-shadow-sm ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-semibold"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter Your Name"
+                />
+              </div>
+              <div className="w-68 h-12 px-4 py-2 mt-10 ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-bold border rounded-sm cursor-default">
+                <h1>Select a Topic</h1>
+              </div>
+              <div>
+                {topicData.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => {
+                        setSelectedTopic(item.id);
+                      }}
+                      className={`w-72 h-12 px-4 py-2 mt-2 text-center text-xl text-gray-700 bg-green-300 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer hover:text-gray-800 duration-200 ${
+                        selectedTopic === item.id && "bg-green-400"
+                      }`}
+                    >
+                      {item.name}
+                    </div>
+                  );
+                })}
+              </div>
+              <button
+                type="submit"
+                disabled={!(name && selectedTopic)}
+                onKeyDown={(e) => something(e)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleSubmit();
+                }}
+                className={`w-72 h-12 px-4 py-2 mt-10 text-center text-xl text-gray-700 bg-green-400 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer duration-200 disabled:bg-green-300`}
+              >
+                Start Quiz
+              </button>
+            </form>
           </div>
-          <button
-            type="submit"
-            disabled={!(name && selectedTopic)}
-            onKeyDown={(e) => something(e)}
-            onClick={(event) => {
-              event.preventDefault();
-              handleSubmit();
-            }}
-            className={`w-72 h-12 px-4 py-2 mt-10 text-center text-xl text-gray-700 bg-green-400 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer duration-200 disabled:bg-green-300`}
-          >
-            Start Quiz
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

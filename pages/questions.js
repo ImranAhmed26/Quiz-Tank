@@ -44,9 +44,6 @@ const Quiz = () => {
     if (number < 10) {
       setNumber(number + 1);
     }
-    console.log(points);
-    console.log(quiz[number].answer);
-    console.log(userAnswer);
   };
 
   const handleSubmit = () => {

@@ -9,7 +9,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center py-6 ">
             <div className="">
               <Link href={"/"} passHref>
-                <a className="text-3xl font-extrabold pl-2 text-gray-700 drop-shadow-sm cursor-pointer">
+                <a className="text-3xl font-extrabold pl-2 text-gray-700 drop-shadow-sm cursor-pointer hover:text-green-400 duration-200">
                   Quiz Tank
                 </a>
               </Link>

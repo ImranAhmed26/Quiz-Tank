@@ -20,7 +20,7 @@ const Quiz = () => {
   useEffect(() => {
     axios
       .get(
-        `https://opentdb.com/api.php?amount=5&category=${router.query.id}&difficulty=easy&type=multiple`,
+        `https://opentdb.com/api.php?amount=10&category=${router.query.id}&difficulty=easy&type=multiple`,
       )
       .then((res) => {
         console.log(res);
@@ -44,7 +44,7 @@ const Quiz = () => {
     let userAnswer = e.target.outerText;
 
     if (quiz[number].answer === userAnswer) setPoints(points + 1);
-    if (number < 5) {
+    if (number < 10) {
       setNumber(number + 1);
     }
     console.log(points);
@@ -58,7 +58,7 @@ const Quiz = () => {
   };
 
   const handleSkip = () => {
-    if (number < 5) {
+    if (number < 10) {
       setNumber(number + 1);
     }
   };
@@ -94,9 +94,25 @@ const Quiz = () => {
             </div>
           </div>
         )}
-        {!quiz[number] && (
+        {!quiz[number] && number !== 10 && (
+          <div className="flex flex-col items-center ">
+            <div className="flex items-center justify-center min-h-[8rem] bg-gray-50 w-[24rem] md:w-[30rem] lg:w-[40rem] text-2xl font-medium text-gray-700 px-6 py-2 mt-16 mb-4 rounded-md drop-shadow-md cursor-default "></div>
+
+            <div className=" min-h-[20rem] lg:min-h-[18rem]">
+              <div>
+                <div className=" drop-shadow flex flex-col justify-center text-xl">
+                  <div className=" bg-gray-50 rounded-md px-2 py-[22px] mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem]"></div>
+                  <div className=" bg-gray-50 rounded-md px-2 py-[22px] mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem]"></div>
+                  <div className=" bg-gray-50 rounded-md px-2 py-[22px] mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem]"></div>
+                  <div className=" bg-gray-50 rounded-md px-2 py-[22px] mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {number === 10 && (
           <div className="flex items-center justify-center bg-gray-50 w-[24rem] md:w-[30rem] lg:w-[40rem] text-2xl font-medium text-gray-700 px-6 py-2 mt-16 mb-4 rounded-md drop-shadow-md cursor-default min-h-[28rem] lg:min-h-[26rem]">
-            <h1 className="w-[24rem] md:w-[30rem] lg:w-[40rem]">
+            <h1 className="">
               This is the end of your quiz. Please press the submit button below to finish your
               quiz.
             </h1>
@@ -128,16 +144,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-
-// quiz[number].options
-
-// useEffect(() => {
-//   axios
-//     .get("https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple")
-//     .then((response) => {
-//       const data = response.data;
-//       console.log(response);
-//       console.log(response.data.results);
-//       setQuestions(data.results);
-//     });
-// }, []);

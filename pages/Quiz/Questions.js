@@ -3,7 +3,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Router from "next/router";
 import { useRouter } from "next/router";
-import Localbase from "localbase";
 
 import Navbar from "../../components/Navbar";
 
@@ -14,8 +13,6 @@ const Quiz = () => {
   const [points, setPoints] = useState(0);
 
   const router = useRouter();
-
-  let db = new Localbase("db");
 
   useEffect(() => {
     axios

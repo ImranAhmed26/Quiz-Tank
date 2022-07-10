@@ -1,8 +1,9 @@
- [Quiz Tank](https://quiz-tank.vercel.app/) is a quiz app
+ [Quiz Tank](https://quiz-tank.vercel.app/) - a quiz app
 
 ## Quiz Tank. React | Next JS app
 
-```This quiz app is developed as an
+```
+This quiz app is developed as an
 assignment.
 
 ```

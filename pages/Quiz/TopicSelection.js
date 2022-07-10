@@ -10,13 +10,20 @@ const FirstQuiz = () => {
   const [selectedTopic, setSelectedTopic] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("user", name);
+    const user = localStorage.getItem("userName");
+    setName(user);
   }, []);
 
   const handleSubmit = () => {
     localStorage.setItem("userName", name);
     localStorage.setItem("selectedTopic", selectedTopic);
     Router.push({ pathname: "./Questions", query: { id: selectedTopic } });
+  };
+
+  const something = (event) => {
+    if (event.keyCode === 13) {
+      console.log("enter");
+    }
   };
 
   return (
@@ -29,8 +36,8 @@ const FirstQuiz = () => {
               onChange={(event) => {
                 setName(event.target.value || "");
               }}
-              value={name}
-              className="w-72 h-12 mt-28 px-4 rounded-sm border-2 shadow-lg ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-semibold"
+              value={name || ""}
+              className="w-72 h-12 mt-28 px-4 rounded-sm border drop-shadow-sm ring-offset-0 ring-0 outline-0 text-center text-xl text-gray-700 font-semibold"
               type="text"
               name="name"
               id="name"
@@ -58,10 +65,12 @@ const FirstQuiz = () => {
             })}
           </div>
           <button
+            type="submit"
             disabled={!(name && selectedTopic)}
+            onKeyDown={(e) => something(e)}
             onClick={(event) => {
-              handleSubmit();
               event.preventDefault();
+              handleSubmit();
             }}
             className={`w-72 h-12 px-4 py-2 mt-10 text-center text-xl text-gray-700 bg-green-400 font-bold rounded-sm ring-offset-0 ring-0 outline-0 shadow-md cursor-pointer duration-200 disabled:bg-green-300`}
           >

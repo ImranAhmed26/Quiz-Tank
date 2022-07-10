@@ -77,9 +77,12 @@ const Quiz = () => {
 
             <div className=" min-h-[20rem] lg:min-h-[18rem]">
               {quiz[number].options.map((item, index) => (
-                <div key={index} onClick={pickAnswer}>
+                <div key={index}>
                   <div className=" drop-shadow flex justify-center text-xl">
-                    <div className="text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer">
+                    <div
+                      onClick={pickAnswer}
+                      className="text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer"
+                    >
                       {`${item}`}
                     </div>
                   </div>

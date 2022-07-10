@@ -40,7 +40,7 @@ const FirstQuiz = () => {
           </div>
 
           <div className="flex justify-center w-1/2">
-            <form className="">
+            <form className="" type="submit">
               <div>
                 <input
                   onChange={(event) => {

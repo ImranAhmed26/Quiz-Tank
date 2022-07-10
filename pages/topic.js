@@ -1,5 +1,6 @@
 import Router from "next/router";
 import React from "react";
+import { useRef } from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -11,9 +12,21 @@ const FirstQuiz = () => {
   const [name, setName] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
 
+  const ref = useRef();
+  function handleKeyUp(event) {
+    if (event.keyCode === 13) {
+      handleSubmit();
+    }
+  }
+
   useEffect(() => {
     const user = localStorage.getItem("userName");
     setName(user);
+
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, []);
 
   const handleSubmit = () => {
@@ -40,7 +53,7 @@ const FirstQuiz = () => {
           </div>
 
           <div className="flex justify-center w-1/2">
-            <form className="" type="submit">
+            <form className="" ref={ref}>
               <div>
                 <input
                   onChange={(event) => {

@@ -17,7 +17,7 @@ const Result = () => {
 
   const handleClick = () => {
     localStorage.setItem("points", 0);
-    Router.push("./topic-selection");
+    Router.push("/topic");
   };
 
   return (

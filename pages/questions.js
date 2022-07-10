@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import { useRouter } from "next/router";
 
-import Navbar from "../../components/navbar";
+import Navbar from "../components/navbar";
 
 const Quiz = () => {
   const [userName, setUserName] = useState();
@@ -51,7 +51,7 @@ const Quiz = () => {
 
   const handleSubmit = () => {
     localStorage.setItem("points", points);
-    Router.push("./result");
+    Router.push("/result");
   };
 
   const handleSkip = () => {

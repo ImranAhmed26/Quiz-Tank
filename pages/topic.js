@@ -17,7 +17,7 @@ const FirstQuiz = () => {
   const handleSubmit = () => {
     localStorage.setItem("userName", name);
     localStorage.setItem("selectedTopic", selectedTopic);
-    Router.push({ pathname: "./questions", query: { id: selectedTopic } });
+    Router.push({ pathname: "/questions", query: { id: selectedTopic } });
   };
 
   const something = (event) => {

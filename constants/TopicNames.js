@@ -1,4 +1,4 @@
- const topicData = [
+const topicData = [
   {
     id: 18,
     name: "Computer Science",
@@ -9,14 +9,14 @@
   },
 
   {
-    id: 3,
-    name: "Information Technology",
+    id: 23,
+    name: "History",
   },
 
   {
-    id: 4,
-    name: "Mathematics",
+    id: 9,
+    name: "General Knowledge",
   },
 ];
 
-export default topicData
+export default topicData;

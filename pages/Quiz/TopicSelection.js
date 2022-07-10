@@ -11,13 +11,12 @@ const FirstQuiz = () => {
 
   useEffect(() => {
     localStorage.setItem("user", name);
-    console.log("drama");
   }, []);
 
   const handleSubmit = () => {
     localStorage.setItem("userName", name);
     localStorage.setItem("selectedTopic", selectedTopic);
-    Router.push("./Questions");
+    Router.push({ pathname: "./Questions", query: { id: selectedTopic } });
   };
 
   return (

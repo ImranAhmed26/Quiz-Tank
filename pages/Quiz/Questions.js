@@ -2,6 +2,7 @@ const axios = require("axios").default;
 import React from "react";
 import { useEffect, useState } from "react";
 import Router from "next/router";
+import { useRouter } from "next/router";
 
 import Navbar from "../../components/Navbar";
 
@@ -20,6 +21,8 @@ const Quiz = () => {
   const [number, setNumber] = useState(0);
   const [pts, setPts] = useState(0);
 
+  const router = useRouter();
+
   const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
 
   const pickAnswer = (e) => {
@@ -31,6 +34,10 @@ const Quiz = () => {
     if (number === 4) {
       Router.push("./Result");
     }
+  };
+
+  const handleSubmit = () => {
+    Router.push("./Result");
   };
 
   const handleSkip = () => {
@@ -47,7 +54,9 @@ const Quiz = () => {
 
   useEffect(() => {
     axios
-      .get("https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple")
+      .get(
+        `https://opentdb.com/api.php?amount=5&category=${router.query.id}&difficulty=easy&type=multiple`,
+      )
       .then((res) => {
         console.log(res);
         setQuiz(
@@ -62,6 +71,7 @@ const Quiz = () => {
 
     const user = localStorage.getItem("userName");
     setUserName(user);
+    console.log("id is " + router.query.id);
   }, []);
 
   return (
@@ -76,7 +86,7 @@ const Quiz = () => {
               {quiz[number].question}
             </div>
 
-            <div className=" min-h-[20rem] lg: min-h-[18rem]">
+            <div className=" min-h-[20rem] lg:min-h-[18rem]">
               {quiz[number].options.map((item, index) => (
                 <div key={index} onClick={pickAnswer}>
                   <div className=" drop-shadow flex justify-center text-xl">
@@ -87,7 +97,10 @@ const Quiz = () => {
                 </div>
               ))}
             </div>
-            <div className="text-xl text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer">
+            <div
+              className="text-xl text-center text-gray-800 bg-green-200 rounded-md px-2 py-2 mt-2 w-[24rem] md:w-[30rem] lg:w-[40rem] hover:bg-green-300 duration-200 drop-shadow-md cursor-pointer"
+              onClick={handleSubmit}
+            >
               Submit
             </div>
             <div className="flex gap-16 md:gap-40 lg:gap-80 py-4 mt-6 lg:mx-20 px-52 md:px-40 lg:px-20 justify-between font-sans">

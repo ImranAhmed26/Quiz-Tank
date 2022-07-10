@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import { useRouter } from "next/router";
 
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 
 const Quiz = () => {
   const [userName, setUserName] = useState();

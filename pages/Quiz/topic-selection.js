@@ -2,8 +2,8 @@ import Router from "next/router";
 import React from "react";
 import { useEffect, useState } from "react";
 
-import topicData from "../../constants/TopicNames";
-import Navbar from "../../components/Navbar";
+import topicData from "../../constants/topic-names";
+import Navbar from "../../components/navbar";
 
 const FirstQuiz = () => {
   const [name, setName] = useState("");

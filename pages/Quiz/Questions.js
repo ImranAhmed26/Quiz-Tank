@@ -51,7 +51,7 @@ const Quiz = () => {
 
   const handleSubmit = () => {
     localStorage.setItem("points", points);
-    Router.push("./Result");
+    Router.push("./result");
   };
 
   const handleSkip = () => {
